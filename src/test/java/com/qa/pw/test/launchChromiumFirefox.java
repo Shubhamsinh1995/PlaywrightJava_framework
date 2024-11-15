@@ -5,7 +5,9 @@ import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class launchChromiumFirefox {
     @Test
@@ -50,11 +52,16 @@ public class launchChromiumFirefox {
         System.out.println("Title is :"+title);
         PlaywrightAssertions.assertThat(page).hasTitle(title);
 
+        // Instantiate SoftAssert
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(title, "Expected Title", "Title does not match!");
+
         String url = page.url();
         System.out.println("URL is :"+url);
         PlaywrightAssertions.assertThat(page).hasURL(url);
 
         page.close();
         browser.close();
+        softAssert.assertAll();
     }
 }
