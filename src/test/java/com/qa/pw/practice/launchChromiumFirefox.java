@@ -1,11 +1,10 @@
-package com.qa.pw.test;
+package com.qa.pw.practice;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -18,7 +17,7 @@ public class launchChromiumFirefox {
         //Browser browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false));  // launch safari on windows
         Page page = browser.newPage();
 
-        page.navigate("https://ui.freecrm.com/");
+        page.navigate("https://ui.cogmento.com/?lang=en");
         String title= page.title();
         System.out.println("Title is :"+title);
         PlaywrightAssertions.assertThat(page).hasTitle(title); // By-default PlaywrightAssertions wait for 5 seconds
@@ -41,9 +40,9 @@ public class launchChromiumFirefox {
     public void launchActualBrowser(){
         Playwright playwright = Playwright.create();  // create() method start the PlayWrite server
 
-        BrowserType.LaunchOptions lp = new BrowserType.LaunchOptions();
-        lp.setChannel("chrome"); // to launch the actual Chrome browser
-        lp.setHeadless(false);
+        BrowserType.LaunchOptions lp = new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(false);
+        //lp.setChannel("chrome"); // to launch the actual Chrome browser
+        //lp.setHeadless(false);
         Browser browser = playwright.chromium().launch(lp);
         Page page = browser.newPage();
 
@@ -54,7 +53,7 @@ public class launchChromiumFirefox {
 
         // Instantiate SoftAssert
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(title, "Expected Title", "Title does not match!");
+        softAssert.assertEquals(title, "Google", "Title does not match!");
 
         String url = page.url();
         System.out.println("URL is :"+url);

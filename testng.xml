@@ -5,7 +5,7 @@
 
     <test name="PlayWright Sessions">
         <classes>
-            <class name="com.qa.pw.test.launchChromiumFirefox" />
+            <class name="com.qa.pw.practice.launchChromiumFirefox" />
         </classes>
     </test>
 
