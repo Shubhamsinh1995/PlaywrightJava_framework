@@ -1,2 +1,0 @@
-# PlaywrightSession
-PlayWrightSession
