@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-10-20T23:25:23 IST" name="PlayWright Automation suite" finished-at="2024-10-20T23:27:06 IST" duration-ms="103936">
+    <groups>
+    </groups>
+    <test started-at="2024-10-20T23:25:23 IST" name="PlayWright Sessions" finished-at="2024-10-20T23:27:06 IST" duration-ms="103936">
+      <class name="com.qa.pw.test.launchChromiumFirefox">
+        <test-method signature="launch()[pri:0, instance:com.qa.pw.test.launchChromiumFirefox@581ac8a8]" started-at="2024-10-20T23:25:23 IST" name="launch" finished-at="2024-10-20T23:26:51 IST" duration-ms="88792" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launch -->
+        <test-method signature="launchActualBrowser()[pri:0, instance:com.qa.pw.test.launchChromiumFirefox@581ac8a8]" started-at="2024-10-20T23:26:51 IST" name="launchActualBrowser" finished-at="2024-10-20T23:27:06 IST" duration-ms="15049" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchActualBrowser -->
+      </class> <!-- com.qa.pw.test.launchChromiumFirefox -->
+    </test> <!-- PlayWright Sessions -->
+  </suite> <!-- PlayWright Automation suite -->
+</testng-results>
