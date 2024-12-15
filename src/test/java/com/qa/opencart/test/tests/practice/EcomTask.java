@@ -1,4 +1,4 @@
-package com.qa.pw.practice;
+package com.qa.opencart.test.tests.practice;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
@@ -9,8 +9,8 @@ public class EcomTask {
     @Test
 
     public void verify(){
-        Playwright playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        //Playwright playwright = Playwright.create();
+        Browser browser = Playwright.create().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         BrowserContext context = browser.newContext();
         Page page = context.newPage();
 
@@ -20,11 +20,11 @@ public class EcomTask {
 
         page.locator("(//a[@href= 'https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/blog/home'])[2]").click();
 
-        // Scroll to the bottom of the page
-        //page.evaluate("window.scrollTo(0, document.body.scrollHeight)");
+        // Scroll to the bottom of the base
+        //base.evaluate("window.scrollTo(0, document.body.scrollHeight)");
 
-        // Scroll back to the top of the page
-        //page.evaluate("window.scrollTo(0, 0)");
+        // Scroll back to the top of the base
+        //base.evaluate("window.scrollTo(0, 0)");
 
         page.locator("(//a[contains(@href, 'https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/blog/article&article')])[1]").click();
 

@@ -1,4 +1,4 @@
-package com.qa.pw.practice;
+package com.qa.opencart.test.tests.practice;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
