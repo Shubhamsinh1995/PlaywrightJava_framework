@@ -6,14 +6,6 @@ import com.qa.opencart.main.base.BasePage;
 
 public class HomePage extends BasePage {
 
-    Page page;
-
-    public HomePage(Page page){
-        super(page);
-        this.page=page;
-    }
-
-
     private final String SIGNIN_BUTTON_XPATH = "//span[@id='gh-ug']/a[text()='Sign in']";
     private final String REGISTER_BUTTON_XPATH = "//span[@id='gh-ug-flex']/a[text()='register']";
     private final String SEARCH_FIELD_XPATH = "//input[@id='gh-ac']";
@@ -59,8 +51,9 @@ public class HomePage extends BasePage {
         return verifyElementIsVisible(EBAY_LOGO_XPATH);
     }
 
-    public void clickOnSignInLink(){
+    public LoginPage clickOnSignInLink(){
         clickOn(SIGNIN_BUTTON_XPATH, "SignIn link");
+        return new LoginPage();
     }
 
     public void clickOnRegisterInLink(){
@@ -81,10 +74,11 @@ public class HomePage extends BasePage {
     }
 
     public Boolean verifySearchResultstDisplayed(){
-        page.waitForTimeout(3000);
+        getPage().waitForTimeout(3000);
         Locator result = getLocator(SEARCH_RESULT_XPATH);
         return result.count() > 0;
     }
+
 
 
 

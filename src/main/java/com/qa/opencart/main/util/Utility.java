@@ -9,7 +9,7 @@ public class Utility extends BasePage {
     private static Page page;
 
     public Utility(Page page) {
-        super(page);
+        super();
         this.page = page;
     }
 

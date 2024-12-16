@@ -5,7 +5,7 @@ import com.microsoft.playwright.Page;
 
 public class Container {
 
-    private static Page page;
+    protected static Page page;
 
     public Container(Page page){
         this.page =page;

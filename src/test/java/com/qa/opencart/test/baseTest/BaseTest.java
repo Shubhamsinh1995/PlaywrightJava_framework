@@ -2,7 +2,6 @@ package com.qa.opencart.test.baseTest;
 
 import com.microsoft.playwright.Page;
 import com.qa.opencart.main.base.BasePage;
-import com.qa.opencart.main.pages.HomePage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -16,7 +15,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup() {
-    basePage = new BasePage(page);
+    basePage = new BasePage();
     prop = basePage.init_Properties();
     page = basePage.initBrowsers();
     }
