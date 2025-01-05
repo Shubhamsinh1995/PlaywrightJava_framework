@@ -5,25 +5,25 @@ import com.microsoft.playwright.Page;
 
 public class Container {
 
-    protected static Page page;
+    protected Page page;
 
     public Container(Page page){
         this.page =page;
     }
 
-    public static String getTitle(){
+    public String getTitle(){
         String title = page.title();
         System.out.println("Title is: "+title);
         return title;
     }
 
-    public static String getUrl(){
+    public String getUrl(){
         String url = page.url();
         System.out.println("URL is: "+url);
         return url;
     }
 
-    public static void clickOn(String locator, String elementName){
+    public void clickOn(String locator, String elementName){
         page.locator(locator).click();
         System.out.println("Clicked on: "+elementName);
     }
@@ -36,7 +36,7 @@ public class Container {
         return page.getAttribute(selector, name, option);
     }
 
-    public static String getText(String locator){
+    public String getText(String locator){
         String locatorText = page.textContent(locator).trim();
         return locatorText;
     }

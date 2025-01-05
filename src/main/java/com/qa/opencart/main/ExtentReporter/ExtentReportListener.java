@@ -3,6 +3,7 @@ package com.qa.opencart.main.ExtentReporter;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.microsoft.playwright.Page;
 import com.qa.opencart.main.base.BasePage;
+import com.qa.opencart.main.util.Utility;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -107,7 +108,7 @@ public class ExtentReportListener implements ITestListener {
     public synchronized void onTestFailure(ITestResult result) {
         System.out.println((result.getMethod().getMethodName() + " failed!"));
         //test.get().fail("Test failed");
-        test.get().fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromBase64String(takeScreenshot(),result.getMethod().getMethodName()).build());
+        test.get().fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromBase64String(Utility.takeScreenshot(),result.getMethod().getMethodName()).build());
         test.get().getModel().setEndTime(getTime(result.getEndMillis()));
     }
 
@@ -128,13 +129,7 @@ public class ExtentReportListener implements ITestListener {
         return calendar.getTime();
     }
 
-    public static String takeScreenshot() {
-        String path = System.getProperty("user.dir") + "/screenshot/" + System.currentTimeMillis() + ".png";
-        byte[] buffer = getPage().screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
-        String base64Path = Base64.getEncoder().encodeToString(buffer);
 
-        return base64Path;
-    }
 }
 
 
