@@ -3,13 +3,20 @@ package com.qa.opencart.main.util;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.qa.opencart.main.base.BasePage;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Base64;
 
 public class Utility extends BasePage {
 
-    private static Page page;
+    private Page page;
 
     public Utility(Page page) {
         super();

@@ -2,7 +2,12 @@ package com.qa.opencart.test.tests.practice;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
+import com.microsoft.playwright.options.WaitForSelectorState;
 import org.testng.annotations.Test;
+
+import javax.swing.*;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class EcomTask {
 
@@ -14,19 +19,25 @@ public class EcomTask {
         BrowserContext context = browser.newContext();
         Page page = context.newPage();
 
-        page.navigate("https://ecommerce-playground.lambdatest.io/index.php?route=common/home");
+        page.navigate("https://ecommerce-playground.lambdatest.io/index.php?route=common/home", new Page.NavigateOptions().setTimeout(60000));
+        page.setViewportSize(1366, 768);
         Locator locator = page.getByAltText("Poco Electro");
-        PlaywrightAssertions.assertThat(locator).hasText("Poco Electro");
+        assertThat(locator).hasText("Poco Electro");
 
-        page.locator("(//a[@href= 'https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/blog/home'])[2]").click();
+        Locator link =page.locator("(//a[@href= 'https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/blog/home'])[2]");
+        link.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(20000));
 
         // Scroll to the bottom of the base
-        //base.evaluate("window.scrollTo(0, document.body.scrollHeight)");
+        //pase.evaluate("window.scrollTo(0, document.body.scrollHeight)");
 
         // Scroll back to the top of the base
-        //base.evaluate("window.scrollTo(0, 0)");
+        //pase.evaluate("window.scrollTo(0, 0)");
 
         page.locator("(//a[contains(@href, 'https://ecommerce-playground.lambdatest.io/index.php?route=extension/maza/blog/article&article')])[1]").click();
+
+        page.locator("#input-name").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(50000));
+        page.locator("#input-email").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(50000));
+        page.locator("#input-comment").waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(50000));
 
         page.locator("#input-name").fill("Akshay");
         page.locator("#input-email").fill("testakshay2@gmail.com");
@@ -36,7 +47,7 @@ public class EcomTask {
 
         Locator successMessage = page.locator("//div[@class='alert alert-success alert-dismissible']");
         String fullText = successMessage.textContent().trim();
-        PlaywrightAssertions.assertThat(successMessage).hasText(fullText);
+        assertThat(successMessage).hasText(fullText);
 
     }
 
@@ -46,8 +57,10 @@ public class EcomTask {
         Browser browser = Playwright.create().chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         Page page = browser.newPage();
 
-        page.navigate("https://www.flipkart.com/");
-        PlaywrightAssertions.assertThat(page).hasTitle("Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!");
+        page.navigate("https://www.flipkart.com/", new Page.NavigateOptions().setTimeout(30000));
+        page.setViewportSize(1366, 768);
+
+        assertThat(page).hasTitle("Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!");
 
 
         page.locator("//input[@name='q']").fill("laptop");

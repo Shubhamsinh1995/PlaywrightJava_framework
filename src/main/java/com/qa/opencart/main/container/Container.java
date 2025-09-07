@@ -2,6 +2,7 @@ package com.qa.opencart.main.container;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.WaitForSelectorState;
 
 public class Container {
 
@@ -48,6 +49,14 @@ public class Container {
 
     public void enterText(String locator, String text){
         page.locator(locator).fill(text);
+    }
+
+    public void waitForVisibility(String selector, int seconds){
+        page.locator(selector).waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(seconds * 1000));
+    }
+
+    public void waitForVisibility(Locator locator, int seconds){
+        locator.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(seconds * 1000));
     }
 
     public Locator getLocator(String locator){

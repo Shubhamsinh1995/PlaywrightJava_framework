@@ -1,6 +1,7 @@
 package com.qa.opencart.main.base;
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.WaitUntilState;
 import com.qa.opencart.main.container.Container;
 
 import java.io.FileInputStream;
@@ -72,7 +73,11 @@ public class BasePage extends Container {
 
         tlBrowserContext.set(getBrowser().newContext());
         tlPage.set(getBrowserContext().newPage());
-        getPage().navigate(prop.getProperty("url"));
+        /*int []  screenSize = (int[]) getPage().evaluate("() => [window.screen.width, window.screen.height]", int[].class);
+        int width = screenSize[0];
+        int height = screenSize[1];*/
+        getPage().setViewportSize(1366, 768);
+        getPage().navigate(prop.getProperty("url"), new Page.NavigateOptions().setTimeout(60000));
 
         return getPage();
     }
